@@ -122,7 +122,7 @@ export class PivotalService {
     getUsers(token: string, project: string): Observable<User[]> {
         const result = fetch(`${BASE_URL}/projects/${project}/memberships`, { headers: { 'X-TrackerToken': token } })
             .then(res => res.json())
-            .then((res: User[]) => res as User[]);
+            .then((res) => res.map((item: { person: User; }) => item?.person as User));
 
         return from(result);
     }

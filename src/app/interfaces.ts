@@ -1,3 +1,5 @@
+import { Point } from "highcharts";
+
 export interface Project {
     id: number;
     name: string;
@@ -53,4 +55,21 @@ export interface Story {
 
 export interface User {
     id: number;
+    email: string;
+    initials: string;
+    name: string;
+    username: string;
+}
+
+export interface TooltipLine {
+    title?: string,
+    value: string,
+    style?: string,
+    owner?: string,
+    estimatedCompletion?: string,
+}
+
+export interface GanttPoint extends Point {
+    start: number,
+    end: number
 }
