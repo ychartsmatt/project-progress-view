@@ -45,7 +45,8 @@ export class ProjectProgressComponent implements OnChanges {
                     color: getProjectColor(epic),
                     custom: {
                         points: epic.total_points,
-                        estimatedCompletion: epic.estimated_completion
+                        epicEstimatedCompletion: epic.estimated_completion,
+                        epicProjectedCompletion: epic.projected_completion
                     }
                 });
                 
@@ -104,10 +105,20 @@ export class ProjectProgressComponent implements OnChanges {
                         value: formatDate(point.start, 'shortDate', 'en-US')
                     });
 
-                    lines.push({
-                        title: custom?.['finished'] ? 'Finished' : 'Est. Completion',
-                        value: formatDate(point.end, 'shortDate', 'en-US')
-                    });
+                    if (custom?.['epicEstimatedCompletion'] && custom?.['epicProjectedCompletion']) {
+                        lines.push({
+                            title: 'Est. Completion',
+                            value: formatDate(custom['epicEstimatedCompletion'], 'shortDate', 'en-US')
+                        }, {
+                            title: 'Proj. Completion',
+                            value: formatDate(custom['epicProjectedCompletion'], 'shortDate', 'en-US')
+                        });
+                    } else {
+                        lines.push({
+                            title: custom?.['finished'] ? 'Finished' : 'Est. Completion',
+                            value: formatDate(point.end, 'shortDate', 'en-US')
+                        });
+                    }
                     
                     if (custom?.['owner']) {
                         lines.push({
