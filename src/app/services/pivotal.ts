@@ -3,7 +3,7 @@ import { Observable, from } from 'rxjs';
 import { Project, Epic, Story, User } from '../interfaces';
 
 import * as moment from 'moment-business-days';
-import holidays from '../ycharts-holidays.json';
+import holidays from '../../assets/ycharts-holidays.json';
 
 const BASE_URL = 'https://www.pivotaltracker.com/services/v5'
 
